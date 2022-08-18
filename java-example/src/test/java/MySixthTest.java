@@ -39,9 +39,9 @@ public class MySixthTest {
 
         int numberRowWithCountryName = 2;
         boolean isSorted = true;
-        List<String> countrysZones = new ArrayList<>();
 
         for (int i = 0; i < rowsCountrys.size(); i++) {
+            List<String> countrysZones = new ArrayList<>();
             driver.navigate().to("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
             tableCountrys = driver.findElement(By.className("dataTable"));
             rowsCountrys = tableCountrys.findElements(By.cssSelector("tr.row"));
@@ -57,12 +57,14 @@ public class MySixthTest {
                     String country = elements.get(0).getText();
                     countrysZones.add(country);
                 }
-                for (int z = 0; z < countrysZones.size() - 1; z++) {
-                    if (countrysZones.get(z).compareTo(countrysZones.get(z + 1)) >= 0) {
-                        Assertions.fail("no sorting here");
-                    }
+
+            }
+            for (int z = 0; z < countrysZones.size() - 1; z++) {
+                if (countrysZones.get(z).compareTo(countrysZones.get(z + 1)) >= 0) {
+                    Assertions.fail("no sorting here");
                 }
             }
+
         }
 
 
