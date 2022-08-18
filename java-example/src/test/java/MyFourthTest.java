@@ -34,7 +34,6 @@ public class MyFourthTest {
         System.out.println(productsList);
 
         for (int i = 0; i < productsList.size(); i++) {
-            productsList = driver.findElements(By.cssSelector("li.product"));
             List<WebElement> sticker = productsList.get(i).findElements(By.className("sticker"));
             if (sticker.size() != 1) {
                 Assertions.fail("there should be only one 'sticker' element");
