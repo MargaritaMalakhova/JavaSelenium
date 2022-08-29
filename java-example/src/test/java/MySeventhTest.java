@@ -35,17 +35,15 @@ public class MySeventhTest {
 
         String yellowDuckTitle = driver.findElement(By.cssSelector("#box-campaigns div.name")).getAttribute("textContent");
         String yellowDuckRegularPrice = driver.findElement(By.cssSelector("#box-campaigns s.regular-price")).getAttribute("textContent");
+        String getYellowDuckRegularPricefont = driver.findElement(By.cssSelector("#box-campaigns s.regular-price")).getCssValue("font-size");
+        double yellowDuckRegularPricefont = Double.parseDouble((getYellowDuckRegularPricefont.substring(0, getYellowDuckRegularPricefont.length()-2)));
         String yellowDuckRegularPriceColor = driver.findElement(By.cssSelector("#box-campaigns s.regular-price")).getCssValue("color");
-        Dimension yellowDuckRegularPriceSize = driver.findElement(By.cssSelector("#box-campaigns s.regular-price")).getSize();
         String yellowDuckDiscountPrice = driver.findElement(By.cssSelector("#box-campaigns strong.campaign-price")).getAttribute("textContent");
+        String getYellowDuckDiscountPricefont = driver.findElement(By.cssSelector("#box-campaigns strong.campaign-price")).getCssValue("font-size");
+        double yellowDuckDiscountPricefont = Double.parseDouble((getYellowDuckDiscountPricefont.substring(0, getYellowDuckDiscountPricefont.length()-2)));
         String yellowDuckDiscountPriceColor = driver.findElement(By.cssSelector("#box-campaigns strong.campaign-price")).getCssValue("color");
-        Dimension yellowDuckDiscountPriceSize = driver.findElement(By.cssSelector("#box-campaigns strong.campaign-price")).getSize();
-        System.out.println(yellowDuckRegularPriceSize);
-        System.out.println(yellowDuckDiscountPriceSize);
-        System.out.println(yellowDuckDiscountPriceColor);
 
-        if (yellowDuckDiscountPriceSize.getHeight() * yellowDuckDiscountPriceSize.getWidth() <
-                yellowDuckRegularPriceSize.getHeight() * yellowDuckRegularPriceSize.getWidth()) {
+        if (yellowDuckDiscountPricefont < yellowDuckRegularPricefont) {
             Assertions.fail("regular price bigger then discount price");
         }
 
@@ -83,10 +81,12 @@ public class MySeventhTest {
         String yellowDuckTitle2 = driver.findElement(By.cssSelector("h1")).getAttribute("textContent");
         String yellowDuckRegularPrice2 = driver.findElement(By.cssSelector("#box-product s.regular-price")).getAttribute("textContent");
         String yellowDuckRegularPrice2Color = driver.findElement(By.cssSelector("#box-product s.regular-price")).getCssValue("color");
-        Dimension yellowDuckRegularPrice2Size = driver.findElement(By.cssSelector("#box-product s.regular-price")).getSize();
+        String getYellowDuckRegularPricefont2 = driver.findElement(By.cssSelector("#box-product s.regular-price")).getCssValue("font-size");
+        double yellowDuckRegularPricefont2 = Double.parseDouble((getYellowDuckRegularPricefont2.substring(0, getYellowDuckRegularPricefont2.length()-2)));
         String yellowDuckDiscountPrice2 = driver.findElement(By.cssSelector("#box-product strong.campaign-price")).getAttribute("textContent");
         String yellowDuckDiscountPriceColor2 = driver.findElement(By.cssSelector("#box-product strong.campaign-price")).getCssValue("color");
-        Dimension yellowDuckDiscountPriceSize2 = driver.findElement(By.cssSelector("#box-product strong.campaign-price")).getSize();
+        String getYellowDuckDiscountPricefont2 = driver.findElement(By.cssSelector("#box-product strong.campaign-price")).getCssValue("font-size");
+        double yellowDuckDiscountPricefont2 = Double.parseDouble((getYellowDuckDiscountPricefont2.substring(0, getYellowDuckDiscountPricefont2.length()-2)));
 
         if (yellowDuckTitle.compareTo(yellowDuckTitle2) != 0) {
             Assertions.fail("titles of the product aren't equals");
@@ -101,8 +101,7 @@ public class MySeventhTest {
         }
 
 
-        if (yellowDuckDiscountPriceSize2.getHeight() * yellowDuckDiscountPriceSize2.getWidth() <
-                yellowDuckRegularPrice2Size.getHeight() * yellowDuckRegularPrice2Size.getWidth()) {
+        if (yellowDuckDiscountPricefont2 < yellowDuckRegularPricefont2) {
             Assertions.fail("regular price bigger then discount price");
         }
 
