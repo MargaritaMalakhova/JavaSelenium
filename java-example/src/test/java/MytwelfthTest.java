@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -36,6 +37,11 @@ public class MytwelfthTest {
             WebElement amountItemsOld = driver.findElement(By.cssSelector("#cart > a.content > span.quantity"));
             WebElement buttonAdd = driver.findElement(By.name("add_cart_product"));
             wait.until(visibilityOf(buttonAdd));
+            if(driver.findElement(By.tagName("h1")).getText().compareTo("Yellow Duck") == 0){
+                Select size = new Select(driver.findElement(By.name("options[Size]")));
+                size.selectByVisibleText("Small");
+
+            }
             buttonAdd.click();
             String spanText = Integer.toString(i + 1);
             wait.until(attributeContains(amountItemsOld, "textContent", spanText));
@@ -45,8 +51,12 @@ public class MytwelfthTest {
         wait.until(titleIs("Online Store | My Store"));
         driver.findElement(By.cssSelector("#cart a.link")).click();
         wait = new WebDriverWait(driver, 10);
+        WebElement table = driver.findElement(By.className("dataTable"));
 
-        for (int i = 0; i < 2; i++) {
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+        System.out.println(rows.size());
+
+        for (int i = 0; i < rows.size() - 6; i++) {
             driver.findElement(By.cssSelector("#box-checkout-cart li:nth-child(1) > a")).click();
             WebElement buttonRemove = driver.findElement(By.name("remove_cart_item"));
             WebElement removableElementInTable = driver.findElement(By.cssSelector("table > tbody > tr:nth-child(2) > td.item"));
@@ -60,9 +70,9 @@ public class MytwelfthTest {
 
     }
 
-    @AfterEach
-    public void stop() {
-        driver.quit();
-        driver = null;
-    }
+//    @AfterEach
+//    public void stop() {
+//        driver.quit();
+//        driver = null;
+//    }
 }
