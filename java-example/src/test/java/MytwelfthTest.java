@@ -70,9 +70,9 @@ public class MytwelfthTest {
 
     }
 
-//    @AfterEach
-//    public void stop() {
-//        driver.quit();
-//        driver = null;
-//    }
+    @AfterEach
+    public void stop() {
+        driver.quit();
+        driver = null;
+    }
 }
